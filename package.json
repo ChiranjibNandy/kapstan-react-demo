@@ -43,6 +43,7 @@
   "devDependencies": {
     "@mui/icons-material": "^5.15.16",
     "highcharts": "^11.4.1",
-    "highcharts-react-official": "^3.2.1"
+    "highcharts-react-official": "^3.2.1",
+    "@material-ui/icons": "^4.11.3"
   }
 }
