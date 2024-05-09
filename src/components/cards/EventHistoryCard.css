@@ -1,0 +1,27 @@
+table {
+  width: 100%;
+}
+
+.status {
+  border-radius: 12px;
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+}
+
+.in_progress {
+  background-color: yellow;
+}
+
+.failed {
+  background-color: red;
+}
+
+.successful {
+  background-color: green;
+}
+
+.view-more {
+  color: purple;
+  cursor: pointer;
+}
