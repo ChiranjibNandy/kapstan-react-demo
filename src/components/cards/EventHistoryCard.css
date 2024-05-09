@@ -1,5 +1,23 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will push the view-more to the bottom */
+  height: 100%; /* Make sure your card has a defined height */
+}
+
 table {
   width: 100%;
+  border-collapse: collapse; /* This will give a clean look to your table */
+}
+
+tr {
+  border-bottom: 1px solid #ccc; /* This will add a border at the bottom of each row */
+}
+
+td,
+th {
+  padding: 10px; /* This will add some space around your table data */
+  text-align: left; /* Align the text to the left */
 }
 
 .status {

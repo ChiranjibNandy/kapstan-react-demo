@@ -1,16 +1,47 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1em;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
 }
 
-.card {
+.full-width-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  margin: 1em;
+  margin: 1rem;
   border-radius: 15px;
+  border: 1px solid #ccc;
+  padding: 1rem;
 }
 
-.card:hover {
+.full-width-card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.half-width-card {
+  overflow: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin: 1rem;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  height: 100%; /* Add this line */
+  display: flex; /* Add this line */
+  flex-direction: column; /* Add this line */
+}
+
+.half-width-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Additional styles for HighCharts */
+.highcharts-container {
+  width: 100% !important;
+  height: 300px !important;
 }

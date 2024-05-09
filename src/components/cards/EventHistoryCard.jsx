@@ -5,6 +5,7 @@ export const EventHistoryCard = ({ data }) => {
   const { evtHistory } = data;
   return (
     <div class="card">
+      <h3>Event History</h3>
       <table>
         <tr>
           <th>Event</th>

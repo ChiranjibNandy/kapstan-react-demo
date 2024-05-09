@@ -49,37 +49,74 @@ const CPUandMemUtilCard = ({ data }) => {
   const { memUtil, cpuUtil } = data;
   const [value, setValue] = React.useState(0);
   const [chartOptions, setChartOptions] = React.useState(null);
+  const [initialValue, setInitialValue] = React.useState(0); // Add a new state for the initial value
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   useEffect(() => {
+    // Call the API with the initial value when the component mounts
+    fetchData(initialValue);
+
+    // Call the API whenever the value changes
+    const handleValueChange = () => {
+      fetchData(value);
+    };
+
+    handleValueChange();
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener("change", handleValueChange);
+    };
+  }, [value, initialValue]);
+  // Fetch data based on the selected value
+  const fetchData = (selectedValue) => {
     if (cpuUtil && memUtil) {
       setChartOptions(
-        value === 0
+        selectedValue === 0
           ? options(cpuUtil, "cpuUtilization")
           : options(memUtil, "memoryUtilization")
       );
     }
-  }, [memUtil, cpuUtil, value]);
+  };
+  //   useEffect(() => {
+  //     if (cpuUtil && memUtil) {
+  //       setChartOptions(
+  //         value === 0
+  //           ? options(cpuUtil, "cpuUtilization")
+  //           : options(memUtil, "memoryUtilization")
+  //       );
+  //     }
+  //   }, [memUtil, cpuUtil, value]);
   return (
-    <Card className="card">
-      <Box sx={{ width: "100%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="utilization tabs"
-          >
-            <Tab label="CPU" />
-            <Tab label="Memory" />
-          </Tabs>
+    <div>
+      <h3>System metrics</h3>
+      <Card className="card">
+        <Box sx={{ width: "100%" }}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="utilization tabs"
+            >
+              <Tab label="CPU" />
+              <Tab label="Memory" />
+            </Tabs>
+          </Box>
+          {chartOptions && (
+            <div className="chart-container">
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={chartOptions}
+                reflow={false}
+              />
+            </div>
+          )}
         </Box>
-        {chartOptions && (
-          <HighchartsReact highcharts={Highcharts} options={chartOptions} />
-        )}
-      </Box>
-    </Card>
+      </Card>
+    </div>
   );
 };
 
